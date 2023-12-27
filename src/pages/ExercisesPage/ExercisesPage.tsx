@@ -1,7 +1,13 @@
+import useExercises from "../../hooks/useExercises";
+import ExerciseCardGrid from "./components/ExerciseCardGrid/ExerciseCardGrid";
+
 export default function ExercisesPage() {
+  const exercises = useExercises();
+
+  console.log(exercises);
   return (
-    <div>
-      <h1>Exercises Page</h1>
-    </div>
+    <>
+      <ExerciseCardGrid exercises={exercises} />
+    </>
   );
 }

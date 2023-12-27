@@ -1,6 +1,11 @@
 import { Table } from "react-bootstrap";
+import { Exercise } from "../../../../types/exercise";
 
-export default function ExercisesTable() {
+interface ExercisesTableProps {
+  exercises: Exercise[];
+}
+
+export default function ExercisesTable({ exercises }: ExercisesTableProps) {
   return (
     <Table>
       <thead>
@@ -13,13 +18,15 @@ export default function ExercisesTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Push Up</td>
-          <td>Bodyweight</td>
-          <td>None</td>
-          <td>3</td>
-          <td>aaa</td>
-        </tr>
+        {exercises.map((exercise) => (
+          <tr key={exercise.id}>
+            <td>{exercise.name}</td>
+            <td>{exercise.description}</td>
+            <td>{exercise.tags}</td>
+            <td>{exercise.videos.length}</td>
+            <td>aaa</td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );

@@ -11,7 +11,7 @@ export default function Layout() {
         <aside className="layout__sidebar px-2">
           <LayoutSidebar />
         </aside>
-        <main>
+        <main className="w-100 px-2">
           <Outlet />
         </main>
       </div>
