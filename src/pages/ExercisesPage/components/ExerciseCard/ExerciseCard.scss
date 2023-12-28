@@ -1,0 +1,9 @@
+.actions-menu {
+  .dropdown-toggle {
+    border: none !important;
+
+    &:after {
+      display: none !important;
+    }
+  }
+}

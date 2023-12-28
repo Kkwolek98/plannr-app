@@ -1,5 +1,15 @@
-import { Badge, Card, Col, Row } from "react-bootstrap";
+import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  Badge,
+  Card,
+  Col,
+  Dropdown,
+  DropdownButton,
+  Row,
+} from "react-bootstrap";
 import { Exercise } from "../../../../types/exercise";
+import "./ExerciseCard.scss";
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -11,8 +21,19 @@ export default function ExerciseCard({ exercise }: ExerciseCardProps) {
       <Card.Header>
         <Card.Title>
           <Row>
-            <Col xl={11}>{exercise.name}</Col>
-            <Col>{/* TODO: ACTIONS */}</Col>
+            <Col xl={10} md={9}>
+              {exercise.name}
+            </Col>
+            <Col xl={2} md={3}>
+              <DropdownButton
+                className="actions-menu"
+                variant="outline-dark"
+                title={<FontAwesomeIcon icon={faEllipsisV} />}
+              >
+                <Dropdown.Item>Edit</Dropdown.Item>
+                <Dropdown.Item>Delete</Dropdown.Item>
+              </DropdownButton>
+            </Col>
           </Row>
         </Card.Title>
       </Card.Header>
