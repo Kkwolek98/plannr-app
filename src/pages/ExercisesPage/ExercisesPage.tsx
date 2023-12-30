@@ -9,7 +9,6 @@ export default function ExercisesPage() {
   return (
     <>
       <ExercisesTopBar />
-      <hr />
       <ExerciseCardGrid exercises={exercises} />
     </>
   );

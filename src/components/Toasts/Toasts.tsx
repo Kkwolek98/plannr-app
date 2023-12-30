@@ -5,7 +5,7 @@ export default function Toasts() {
   const { toasts, removeToast } = useToast();
 
   return (
-    <ToastContainer position="bottom-end" className="p-5">
+    <ToastContainer position="bottom-end" className="p-2">
       {toasts.map((toast) => (
         <Toast
           key={toast.id}
