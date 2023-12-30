@@ -1,11 +1,19 @@
+import { useEffect } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useParams } from "react-router-dom";
-import useWorkout from "../../../hooks/useWorkout";
+import { getWorkout } from "../../../api/workouts";
+import { useWorkoutContext } from "./hooks/useWorkoutContext";
 
 export default function EditWorkoutPage() {
   const { id } = useParams();
-  const workout = useWorkout(id);
+  const { workout, setWorkout } = useWorkoutContext();
+
+  useEffect(() => {
+    if (id) {
+      getWorkout(id).then((workout) => setWorkout(workout));
+    }
+  }, [id, setWorkout]);
 
   if (!workout) return <>Loading...</>;
 
