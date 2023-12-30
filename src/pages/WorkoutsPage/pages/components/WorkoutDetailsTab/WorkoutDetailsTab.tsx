@@ -12,13 +12,21 @@ export default function WorkoutDetailsTab() {
     <Formik
       initialValues={workout!}
       onSubmit={(values) => {
-        updateWorkout(values).then((workout) => {
-          setWorkout(workout);
-          displayToast({
-            type: "success",
-            title: "Workout updated successfully",
+        updateWorkout(values)
+          .then((workout) => {
+            setWorkout(workout);
+            displayToast({
+              type: "success",
+              title: "Workout updated successfully",
+            });
+          })
+          .catch((error) => {
+            displayToast({
+              type: "error",
+              title: "Workout update failed",
+              message: error?.message,
+            });
           });
-        });
       }}
     >
       {({ values, handleChange, handleSubmit, resetForm, dirty }) => (
