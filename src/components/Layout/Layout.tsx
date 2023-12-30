@@ -8,7 +8,7 @@ export default function Layout() {
   return (
     <>
       <LayoutTopNavbar />
-      <div className="layout">
+      <section className="layout">
         <aside className="layout__sidebar px-2">
           <LayoutSidebar />
         </aside>
@@ -16,7 +16,7 @@ export default function Layout() {
           <Outlet />
           <Toasts />
         </main>
-      </div>
+      </section>
     </>
   );
 }
