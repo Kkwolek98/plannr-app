@@ -2,7 +2,7 @@ import { RouteObject } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import ExercisesPage from "../pages/ExercisesPage/ExercisesPage";
 import HomePage from "../pages/HomePage/HomePage";
-import WorkoutsPage from "../pages/WorkoutsPage/WorkoutsPage";
+import workoutsRoutes from "./workouts.routes";
 
 const routes: RouteObject[] = [
   {
@@ -19,7 +19,7 @@ const routes: RouteObject[] = [
       },
       {
         path: "/workouts",
-        element: <WorkoutsPage />,
+        children: workoutsRoutes,
       },
     ],
   },

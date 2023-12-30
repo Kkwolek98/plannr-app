@@ -1,5 +1,5 @@
 export type Workout = {
-	id: number;
+	id: string;
 	name: string;
 	description?: string;
 	sets: unknown[];
