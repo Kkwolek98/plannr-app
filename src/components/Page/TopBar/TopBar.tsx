@@ -1,17 +1,29 @@
 import { faFilter, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, Stack } from "react-bootstrap";
-import SearchBar from "../../../../components/SearchBar/SearchBar";
-import NewExerciseModal from "../NewExerciseModal/NewExerciseModal";
-import "./ExercisesTopBar.scss";
+import SearchBar from "../../SearchBar/SearchBar";
+import "./TopBar.scss";
 
-export default function ExercisesTopBar() {
+type NewResourceModalProps = {
+  show: boolean;
+  close: () => void;
+};
+
+type TopBarProps = {
+  searchBarTitle?: string;
+  NewResourceModal: React.FC<NewResourceModalProps>;
+};
+
+export default function TopBar({
+  searchBarTitle,
+  NewResourceModal,
+}: TopBarProps) {
   const [showNewExerciseModal, setShowNewExerciseModal] = useState(false);
   return (
     <div className="top-bar">
       <Stack direction="horizontal" gap={3}>
-        <SearchBar />
+        <SearchBar title={searchBarTitle} />
         <Button variant="primary" title="Filter exercises">
           <FontAwesomeIcon icon={faFilter} />
         </Button>
@@ -22,7 +34,7 @@ export default function ExercisesTopBar() {
         >
           <FontAwesomeIcon icon={faPlus} />
         </Button>
-        <NewExerciseModal
+        <NewResourceModal
           show={showNewExerciseModal}
           close={() => setShowNewExerciseModal(false)}
         />

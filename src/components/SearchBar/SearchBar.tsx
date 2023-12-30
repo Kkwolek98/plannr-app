@@ -2,13 +2,14 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form, InputGroup } from "react-bootstrap";
 
-export default function SearchBar() {
+type SearchBarProps = {
+  title?: string;
+};
+
+export default function SearchBar({ title }: SearchBarProps) {
   return (
     <InputGroup>
-      <Form.Control
-        placeholder="Type to search..."
-        aria-label="Type to search..."
-      />
+      <Form.Control placeholder={title} aria-label={title} />
       <Button variant="outline-primary">
         <FontAwesomeIcon icon={faSearch} />
       </Button>
