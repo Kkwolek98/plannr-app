@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Toasts from "../Toasts/Toasts";
 import "./Layout.scss";
-import LayoutSidebar from "./components/LayoutSidebar";
+import LayoutSidebar from "./components/LayoutSidebar/LayoutSidebar";
 import LayoutTopNavbar from "./components/LayoutTopNavbar";
 
 export default function Layout() {

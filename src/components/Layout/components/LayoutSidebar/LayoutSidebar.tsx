@@ -4,20 +4,22 @@ import {
   faPersonRunning,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Stack } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import "./LayoutSidebar.scss";
 
 export default function LayoutSidebar() {
   return (
     <Stack gap={3}>
-      <Button variant="outline-dark" className="btn-circle">
+      <NavLink className="link" to="/exercises">
         <FontAwesomeIcon icon={faDumbbell} />
-      </Button>
-      <Button variant="outline-dark" className="btn-circle">
+      </NavLink>
+      <NavLink className="link" to="/workouts">
         <FontAwesomeIcon icon={faPersonRunning} />
-      </Button>
-      <Button variant="outline-dark" className="btn-circle">
+      </NavLink>
+      <NavLink className="link" to="/results">
         <FontAwesomeIcon icon={faMedal} />
-      </Button>
+      </NavLink>
     </Stack>
   );
 }
