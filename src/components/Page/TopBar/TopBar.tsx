@@ -12,7 +12,7 @@ type NewResourceModalProps = {
 
 type TopBarProps = {
   searchBarTitle?: string;
-  NewResourceModal: React.FC<NewResourceModalProps>;
+  NewResourceModal?: React.FC<NewResourceModalProps>;
 };
 
 export default function TopBar({
@@ -34,10 +34,12 @@ export default function TopBar({
         >
           <FontAwesomeIcon icon={faPlus} />
         </Button>
-        <NewResourceModal
-          show={showNewExerciseModal}
-          close={() => setShowNewExerciseModal(false)}
-        />
+        {NewResourceModal && (
+          <NewResourceModal
+            show={showNewExerciseModal}
+            close={() => setShowNewExerciseModal(false)}
+          />
+        )}
       </Stack>
       <hr />
     </div>
