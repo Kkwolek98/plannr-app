@@ -9,3 +9,9 @@ export function getWorkouts(): Promise<Workout[]> {
 export function getWorkout(id: string): Promise<Workout> {
 	return axios.get(`${config.baseUrl}/workouts/${id}`).then((res) => res.data);
 }
+
+export function updateWorkout(workout: Workout): Promise<Workout> {
+	return axios
+		.put(`${config.baseUrl}/workouts/${workout.id}`, workout)
+		.then((res) => res.data);
+}

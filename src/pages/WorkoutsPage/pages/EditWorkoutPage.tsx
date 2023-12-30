@@ -3,6 +3,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useParams } from "react-router-dom";
 import { getWorkout } from "../../../api/workouts";
+import WorkoutDetailsTab from "./components/WorkoutDetailsTab/WorkoutDetailsTab";
 import { useWorkoutContext } from "./hooks/useWorkoutContext";
 
 export default function EditWorkoutPage() {
@@ -23,7 +24,7 @@ export default function EditWorkoutPage() {
       <hr />
       <Tabs defaultActiveKey="details" id="workout-tabs" fill>
         <Tab eventKey="details" title="Details">
-          <p>{workout.description}</p>
+          <WorkoutDetailsTab />
         </Tab>
         <Tab eventKey="exercises" title="Exercises">
           <p>Exercises</p>
