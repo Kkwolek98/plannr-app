@@ -42,33 +42,29 @@ export default function ExerciseCard({ exercise }: ExerciseCardProps) {
         </Card.Title>
       </Card.Header>
       <Card.Body>
-        <Card.Text>
-          <Row>
-            <Col>
-              <FontAwesomeIcon
-                icon={faFileLines}
-                color={exercise.description ? "gray" : "lightgray"}
-                size="lg"
-                title={exercise.description ? "Description" : "No description"}
-              />
-            </Col>
-            <Col className="d-flex align-items-center">
-              <FontAwesomeIcon
-                icon={faVideoCamera}
-                color={exercise.videos.length ? "gray" : "lightgray"}
-                size="lg"
-                title={
-                  exercise.videos.length ? "Videos" : "No videos available"
-                }
-              />
-              {exercise.videos.length > 0 && (
-                <Badge bg="secondary" className="ms-1">
-                  {exercise.videos.length}
-                </Badge>
-              )}
-            </Col>
-          </Row>
-        </Card.Text>
+        <Row>
+          <Col>
+            <FontAwesomeIcon
+              icon={faFileLines}
+              color={exercise.description ? "gray" : "lightgray"}
+              size="lg"
+              title={exercise.description ? "Description" : "No description"}
+            />
+          </Col>
+          <Col className="d-flex align-items-center">
+            <FontAwesomeIcon
+              icon={faVideoCamera}
+              color={exercise.videos.length ? "gray" : "lightgray"}
+              size="lg"
+              title={exercise.videos.length ? "Videos" : "No videos available"}
+            />
+            {exercise.videos.length > 0 && (
+              <Badge bg="secondary" className="ms-1">
+                {exercise.videos.length}
+              </Badge>
+            )}
+          </Col>
+        </Row>
       </Card.Body>
       <Card.Footer className="h-100">
         {exercise.tags?.map((tag) => (
