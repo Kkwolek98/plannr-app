@@ -2,33 +2,33 @@ import { Formik } from "formik";
 import { Button, Col, Form, Row, Stack } from "react-bootstrap";
 import { updateWorkout } from "../../../../../api/workouts";
 import { useToast } from "../../../../../hooks/useToast";
+import { Workout } from "../../../../../types/workout";
 import { useWorkoutContext } from "../../hooks/useWorkoutContext";
 
 export default function WorkoutDetailsTab() {
   const { workout, setWorkout } = useWorkoutContext();
   const { displayToast } = useToast();
 
+  const submitForm = (values: Workout) => {
+    updateWorkout(values)
+      .then((workout) => {
+        setWorkout(workout);
+        displayToast({
+          type: "success",
+          title: "Workout updated successfully",
+        });
+      })
+      .catch((error) => {
+        displayToast({
+          type: "error",
+          title: "Workout update failed",
+          message: error?.message,
+        });
+      });
+  };
+
   return (
-    <Formik
-      initialValues={workout!}
-      onSubmit={(values) => {
-        updateWorkout(values)
-          .then((workout) => {
-            setWorkout(workout);
-            displayToast({
-              type: "success",
-              title: "Workout updated successfully",
-            });
-          })
-          .catch((error) => {
-            displayToast({
-              type: "error",
-              title: "Workout update failed",
-              message: error?.message,
-            });
-          });
-      }}
-    >
+    <Formik initialValues={workout!} onSubmit={submitForm}>
       {({ values, handleChange, handleSubmit, resetForm, dirty }) => (
         <Form onSubmit={handleSubmit} className="py-2">
           <Row className="mb-2">
