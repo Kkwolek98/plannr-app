@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Badge, Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { postExercise } from "../../../../api/exercises";
 import YTVideo from "../../../../components/YTVideo/YTVideo";
+import { useToast } from "../../../../hooks/useToast";
 
 interface NewExerciseModalProps {
   show: boolean;
@@ -24,12 +25,16 @@ export default function NewExerciseModal({
   show,
   close,
 }: NewExerciseModalProps) {
+  const { displayToast } = useToast();
+
   const formikRef = useRef<FormikProps<NewExerciseFormValues>>(null);
+
   const submit = () => {
     if (formikRef.current) {
       formikRef.current.handleSubmit();
     }
   };
+
   const handleSubmit = (values: NewExerciseFormValues) => {
     const newExercise = {
       name: values.name,
@@ -40,8 +45,14 @@ export default function NewExerciseModal({
 
     postExercise(newExercise).then(() => {
       close();
+      displayToast({
+        title: "Exercise added",
+        message: `Exercise ${newExercise.name} has been added`,
+        type: "success",
+      });
     });
   };
+
   return (
     <Modal show={show} onHide={close}>
       <Modal.Header closeButton>Add new exercise</Modal.Header>

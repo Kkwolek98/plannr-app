@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Toasts from "../Toasts/Toasts";
 import "./Layout.scss";
 import LayoutSidebar from "./components/LayoutSidebar";
 import LayoutTopNavbar from "./components/LayoutTopNavbar";
@@ -13,6 +14,7 @@ export default function Layout() {
         </aside>
         <main className="w-100 px-2">
           <Outlet />
+          <Toasts />
         </main>
       </div>
     </>
