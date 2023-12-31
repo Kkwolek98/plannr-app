@@ -23,12 +23,12 @@ export default function EditWorkoutPage() {
     <>
       <h1 className="h2">{workout.name}</h1>
       <hr />
-      <Tabs defaultActiveKey="details" id="workout-tabs" fill>
-        <Tab eventKey="details" title="Details">
-          <WorkoutDetailsTab />
-        </Tab>
+      <Tabs defaultActiveKey="exercises" id="workout-tabs" fill>
         <Tab eventKey="exercises" title="Exercises">
           <WorkoutExercisesTab />
+        </Tab>
+        <Tab eventKey="details" title="Details">
+          <WorkoutDetailsTab />
         </Tab>
       </Tabs>
     </>
