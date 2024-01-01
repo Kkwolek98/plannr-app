@@ -4,18 +4,22 @@ import { SetItem } from "../../../../../../../../../types/workout";
 type SetItemProps = {
   setItem: SetItem;
   className?: string;
+  index: number;
 };
 
 export default function SetItemComponent({
   setItem,
   className = "",
+  index,
 }: SetItemProps) {
   return (
     <Row className={className}>
-      <Col xl={2}>
-        <span className="fw-bold">{setItem.details.name}</span>
+      <Col xl={1} className="fw-bolder text-center">
+        {index + 1}.
       </Col>
-      <Col xl={1} />
+      <Col xl={2}>
+        <span>{setItem.details.name}</span>
+      </Col>
       <Col xl={2}>
         {setItem.repExact
           ? `${setItem.repExact} reps`

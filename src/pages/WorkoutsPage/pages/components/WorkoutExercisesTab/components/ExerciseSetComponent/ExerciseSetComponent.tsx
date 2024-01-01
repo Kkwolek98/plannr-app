@@ -18,9 +18,10 @@ export default function ExerciseSetComponent({ set }: ExerciseSetProps) {
     <Accordion.Item eventKey={set.id}>
       <Accordion.Header>{set.name}</Accordion.Header>
       <Accordion.Body>
-        {set.setItems?.map((setItem) => (
+        {set.setItems?.map((setItem, index) => (
           <SetItemComponent
             setItem={setItem}
+            index={index}
             className="mb-2"
             key={setItem.id}
           />
