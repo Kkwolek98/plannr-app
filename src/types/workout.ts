@@ -11,6 +11,18 @@ export type Workout = {
 export type ExerciseSet = {
 	id: string;
 	name: string;
-	setItems: Exercise[];
+	setItems: SetItem[];
+	rest?: number;
+};
+
+export type SetItem = {
+	id: string;
+	details: Exercise;
+	repMin?: number;
+	repMax?: number;
+	repExact?: number;
+	repWeight?: number;
+	repType?: string;
+	sort: number;
 	rest?: number;
 };
