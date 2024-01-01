@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, Row, Stack } from "react-bootstrap";
 import { addItemToSet } from "../../../../../../../../../api/sets";
 import useExercises from "../../../../../../../../../hooks/useExercises";
 import { Exercise } from "../../../../../../../../../types/exercise";
@@ -7,6 +7,7 @@ import { ExerciseSet } from "../../../../../../../../../types/workout";
 
 type NewSetItemProps = {
   set: ExerciseSet;
+  close: () => void;
 };
 
 const initialData = {
@@ -23,7 +24,7 @@ const initialData = {
 
 type FormValues = typeof initialData;
 
-export default function NewSetItem({ set }: NewSetItemProps) {
+export default function NewSetItem({ set, close }: NewSetItemProps) {
   const exercises = useExercises();
   const onSubmit = (values: FormValues) => {
     console.log(set);
@@ -46,10 +47,11 @@ export default function NewSetItem({ set }: NewSetItemProps) {
   };
   return (
     <Formik initialValues={initialData} onSubmit={onSubmit}>
-      {({ values, handleChange, handleSubmit }) => (
+      {({ values, handleChange, handleSubmit, resetForm }) => (
         <Form onSubmit={handleSubmit}>
           <Row>
-            <Col xl={3}>
+            <Col xl={2}>
+              <Form.Label>Exercise</Form.Label>
               <Form.Select
                 name="details"
                 value={values.details.id}
@@ -63,6 +65,7 @@ export default function NewSetItem({ set }: NewSetItemProps) {
               </Form.Select>
             </Col>
             <Col xl={1}>
+              <Form.Label>Reps</Form.Label>
               <Form.Select
                 name="repRangeType"
                 value={values.repRangeType}
@@ -72,66 +75,96 @@ export default function NewSetItem({ set }: NewSetItemProps) {
                 <option value="range">Range</option>
               </Form.Select>
             </Col>
-            <Col xl={2} className="d-flex gap-2">
+            <Col xl={2}>
+              <Form.Label>&nbsp;</Form.Label>
               {values.repRangeType === "exact" && (
-                <Form.Control
-                  type="number"
-                  name="repExact"
-                  value={values.repExact}
-                  onChange={handleChange}
-                />
+                <InputGroup>
+                  <Form.Control
+                    type="number"
+                    name="repExact"
+                    value={values.repExact}
+                    onChange={handleChange}
+                  />
+                  <InputGroup.Text>reps</InputGroup.Text>
+                </InputGroup>
               )}
               {values.repRangeType === "range" && (
                 <>
-                  <Form.Control
-                    type="number"
-                    name="repMin"
-                    value={values.repMin}
-                    onChange={handleChange}
-                  />
-                  <Form.Control
-                    type="number"
-                    name="repMax"
-                    value={values.repMax}
-                    onChange={handleChange}
-                  />
+                  <InputGroup>
+                    <Form.Control
+                      type="number"
+                      name="repMin"
+                      value={values.repMin}
+                      onChange={handleChange}
+                    />
+                    <InputGroup.Text>to</InputGroup.Text>
+                    <Form.Control
+                      type="number"
+                      name="repMax"
+                      value={values.repMax}
+                      onChange={handleChange}
+                    />
+                    <InputGroup.Text>reps</InputGroup.Text>
+                  </InputGroup>
+                </>
+              )}
+            </Col>
+            <Col xl={2}>
+              {values.repType !== "rpe" && (
+                <>
+                  <Form.Label>Weight</Form.Label>
+                  <InputGroup>
+                    <InputGroup.Text>@</InputGroup.Text>
+                    <Form.Control
+                      type="number"
+                      name="repWeight"
+                      value={values.repWeight}
+                      onChange={handleChange}
+                    />
+                    <InputGroup.Text>{values.repType}</InputGroup.Text>
+                  </InputGroup>
                 </>
               )}
             </Col>
             <Col xl={1}>
+              <Form.Label>Rep type</Form.Label>
               <Form.Select
                 name="repType"
                 value={values.repType}
                 onChange={handleChange}
               >
                 <option value="kg">kg</option>
+                <option value="lbs">lbs</option>
                 <option value="rpe">RPE</option>
               </Form.Select>
             </Col>
             <Col xl={2}>
-              {values.repType === "kg" && (
-                <InputGroup>
-                  <InputGroup.Text>@</InputGroup.Text>
-                  <Form.Control
-                    type="number"
-                    name="repWeight"
-                    value={values.repWeight}
-                    onChange={handleChange}
-                  />
-                  <InputGroup.Text>kg</InputGroup.Text>
-                </InputGroup>
-              )}
-            </Col>
-            <Col xl={1}>
-              <Form.Control
-                type="number"
-                name="rest"
-                value={values.rest}
-                onChange={handleChange}
-              />
+              <Form.Label>Rest</Form.Label>
+              <InputGroup>
+                <Form.Control
+                  type="number"
+                  name="rest"
+                  value={values.rest}
+                  onChange={handleChange}
+                />
+                <InputGroup.Text>min</InputGroup.Text>
+              </InputGroup>
             </Col>
             <Col xl={2}>
-              <Button type="submit">Add</Button>
+              <Stack>
+                <Button type="submit" className="mb-2">
+                  Add
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    resetForm();
+                    close();
+                  }}
+                >
+                  Cancel
+                </Button>
+              </Stack>
             </Col>
           </Row>
         </Form>

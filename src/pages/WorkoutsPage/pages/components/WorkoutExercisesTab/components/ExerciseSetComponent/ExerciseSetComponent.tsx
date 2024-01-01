@@ -21,11 +21,14 @@ export default function ExerciseSetComponent({ set }: ExerciseSetProps) {
         {set.setItems?.map((setItem) => (
           <SetItemComponent setItem={setItem} key={setItem.id} />
         ))}
-        {showAddExercise && <NewSetItem set={set} />}
-        {set.setItems?.length === 0 && <NoExercises />}
-        <div className="d-flex justify-content-center mt-2">
-          <Button onClick={addExercise}>Add new</Button>
-        </div>
+        {set.setItems?.length === 0 && !showAddExercise && <NoExercises />}
+        {showAddExercise ? (
+          <NewSetItem set={set} close={() => setShowAddExercise(false)} />
+        ) : (
+          <div className="d-flex justify-content-center mt-2">
+            <Button onClick={addExercise}>Add new</Button>
+          </div>
+        )}
       </Accordion.Body>
     </Accordion.Item>
   );
