@@ -19,9 +19,14 @@ export default function ExerciseSetComponent({ set }: ExerciseSetProps) {
       <Accordion.Header>{set.name}</Accordion.Header>
       <Accordion.Body>
         {set.setItems?.map((setItem) => (
-          <SetItemComponent setItem={setItem} key={setItem.id} />
+          <SetItemComponent
+            setItem={setItem}
+            className="mb-2"
+            key={setItem.id}
+          />
         ))}
         {set.setItems?.length === 0 && !showAddExercise && <NoExercises />}
+        <hr />
         {showAddExercise ? (
           <NewSetItem set={set} close={() => setShowAddExercise(false)} />
         ) : (
