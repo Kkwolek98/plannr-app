@@ -5,12 +5,13 @@ import {
   useContext,
   useState,
 } from "react";
-import { Workout } from "../../../../types/workout";
+import { ExerciseSet, Workout } from "../../../../types/workout";
 
 const WorkoutContext = createContext<
   | {
       workout: Workout | undefined;
       setWorkout: Dispatch<SetStateAction<Workout | undefined>>;
+      setExerciseSet: (setId: string, exerciseSet: ExerciseSet) => void;
     }
   | undefined
 >(undefined);
@@ -23,7 +24,21 @@ const WorkoutProvider = ({
 }) => {
   const [workout, setWorkout] = useState<Workout>();
 
-  const context = { workout, setWorkout };
+  const setExerciseSet = (setId: string, exerciseSet: ExerciseSet) => {
+    setWorkout((prev) => {
+      if (!prev) return prev;
+
+      const foundSetIndex = prev.sets?.findIndex((set) => set.id === setId);
+
+      if (foundSetIndex === -1) return prev;
+
+      prev.sets![foundSetIndex] = exerciseSet;
+
+      return { ...prev };
+    });
+  };
+
+  const context = { workout, setWorkout, setExerciseSet };
 
   return (
     <WorkoutContext.Provider value={context}>

@@ -1,11 +1,11 @@
 import axios from "axios";
 import config from "../core/config";
-import { SetItem } from "../types/workout";
+import { ExerciseSet, SetItem } from "../types/workout";
 
 export function addItemToSet(
 	setId: string,
 	item: Omit<SetItem, "id">,
-): Promise<SetItem> {
+): Promise<ExerciseSet> {
 	return axios
 		.post(`${config.baseUrl}/sets/${setId}/new-item`, item)
 		.then((res) => res.data);

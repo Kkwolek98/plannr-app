@@ -4,6 +4,7 @@ import { addItemToSet } from "../../../../../../../../../api/sets";
 import useExercises from "../../../../../../../../../hooks/useExercises";
 import { Exercise } from "../../../../../../../../../types/exercise";
 import { ExerciseSet } from "../../../../../../../../../types/workout";
+import { useWorkoutContext } from "../../../../../../hooks/useWorkoutContext";
 
 type NewSetItemProps = {
   set: ExerciseSet;
@@ -26,10 +27,8 @@ type FormValues = typeof initialData;
 
 export default function NewSetItem({ set, close }: NewSetItemProps) {
   const exercises = useExercises();
+  const { setExerciseSet } = useWorkoutContext();
   const onSubmit = (values: FormValues) => {
-    console.log(set);
-    console.log(values);
-
     const newItem = {
       details: values.details,
       repMin: values.repMin,
@@ -42,7 +41,8 @@ export default function NewSetItem({ set, close }: NewSetItemProps) {
     };
 
     addItemToSet(set.id, newItem).then((res) => {
-      console.log({ res });
+      setExerciseSet(set.id, res);
+      close();
     });
   };
   return (
