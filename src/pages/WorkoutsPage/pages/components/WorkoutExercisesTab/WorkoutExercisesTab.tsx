@@ -6,8 +6,8 @@ export default function WorkoutExercisesTab() {
   const { workout } = useWorkoutContext();
   return (
     <Accordion>
-      {workout!.sets.map((set) => (
-        <ExerciseSetComponent set={set} key={set.id} />
+      {workout!.sets.map((set, index) => (
+        <ExerciseSetComponent index={index} set={set} key={set.id} />
       ))}
     </Accordion>
   );

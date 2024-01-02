@@ -7,19 +7,24 @@ import SetItemComponent from "./components/SetItemComponent/SetItemComponent";
 
 type ExerciseSetProps = {
   set: ExerciseSet;
+  index: number;
 };
 
-export default function ExerciseSetComponent({ set }: ExerciseSetProps) {
+export default function ExerciseSetComponent({ set, index }: ExerciseSetProps) {
+  const setLetter = String.fromCharCode(65 + index);
   const [showAddExercise, setShowAddExercise] = useState(false);
   const addExercise = () => {
     setShowAddExercise(true);
   };
   return (
     <Accordion.Item eventKey={set.id}>
-      <Accordion.Header>{set.name}</Accordion.Header>
+      <Accordion.Header>
+        {setLetter}. {set.name}
+      </Accordion.Header>
       <Accordion.Body>
         {set.setItems?.map((setItem, index) => (
           <SetItemComponent
+            setLetter={setLetter}
             setItem={setItem}
             index={index}
             className="mb-2"

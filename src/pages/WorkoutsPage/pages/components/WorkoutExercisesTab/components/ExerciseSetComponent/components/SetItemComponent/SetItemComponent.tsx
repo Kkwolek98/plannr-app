@@ -5,16 +5,19 @@ type SetItemProps = {
   setItem: SetItem;
   className?: string;
   index: number;
+  setLetter: string;
 };
 
 export default function SetItemComponent({
   setItem,
   className = "",
   index,
+  setLetter,
 }: SetItemProps) {
   return (
     <Row className={className}>
       <Col xl={1} className="fw-bolder text-center">
+        {setLetter}
         {index + 1}.
       </Col>
       <Col xl={2}>
