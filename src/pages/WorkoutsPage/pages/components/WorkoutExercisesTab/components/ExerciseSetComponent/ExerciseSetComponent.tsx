@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Accordion, Button } from "react-bootstrap";
 import { ExerciseSet } from "../../../../../../../types/workout";
 import NewSetItem from "./components/NewSetItem/NewSetItem";
@@ -11,7 +11,7 @@ type ExerciseSetProps = {
 };
 
 export default function ExerciseSetComponent({ set, index }: ExerciseSetProps) {
-  const setLetter = String.fromCharCode(65 + index);
+  const setLetter = useMemo(() => String.fromCharCode(65 + index), [index]);
   const [showAddExercise, setShowAddExercise] = useState(false);
   const addExercise = () => {
     setShowAddExercise(true);
