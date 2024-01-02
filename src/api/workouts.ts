@@ -15,3 +15,12 @@ export function updateWorkout(workout: Workout): Promise<Workout> {
 		.put(`${config.baseUrl}/workouts/${workout.id}`, workout)
 		.then((res) => res.data);
 }
+
+export function addNewSet(
+	workoutId: string,
+	set: { name: string },
+): Promise<Workout> {
+	return axios
+		.post(`${config.baseUrl}/workouts/${workoutId}/sets`, set)
+		.then((res) => res.data);
+}
