@@ -50,7 +50,7 @@ export default function NewSetItem({ set, close }: NewSetItemProps) {
       {({ values, handleChange, handleSubmit, resetForm }) => (
         <Form onSubmit={handleSubmit}>
           <Row>
-            <Col xl={2}>
+            <Col xl={2} className="mt-md-0 mt-2">
               <Form.Label>Exercise</Form.Label>
               <Form.Select
                 name="details"
@@ -64,7 +64,7 @@ export default function NewSetItem({ set, close }: NewSetItemProps) {
                 ))}
               </Form.Select>
             </Col>
-            <Col xl={1}>
+            <Col xl={1} className="mt-md-0 mt-2">
               <Form.Label>Reps</Form.Label>
               <Form.Select
                 name="repRangeType"
@@ -109,7 +109,7 @@ export default function NewSetItem({ set, close }: NewSetItemProps) {
                 </>
               )}
             </Col>
-            <Col xl={2}>
+            <Col xl={2} className="mt-md-0 mt-2">
               {values.repType !== "rpe" && (
                 <>
                   <Form.Label>Weight</Form.Label>
@@ -126,7 +126,7 @@ export default function NewSetItem({ set, close }: NewSetItemProps) {
                 </>
               )}
             </Col>
-            <Col xl={1}>
+            <Col xl={1} className="mt-md-0 mt-2">
               <Form.Label>Rep type</Form.Label>
               <Form.Select
                 name="repType"
@@ -138,7 +138,7 @@ export default function NewSetItem({ set, close }: NewSetItemProps) {
                 <option value="rpe">RPE</option>
               </Form.Select>
             </Col>
-            <Col xl={2}>
+            <Col xl={2} className="mt-md-0 mt-2">
               <Form.Label>Rest</Form.Label>
               <InputGroup>
                 <Form.Control
@@ -150,7 +150,7 @@ export default function NewSetItem({ set, close }: NewSetItemProps) {
                 <InputGroup.Text>min</InputGroup.Text>
               </InputGroup>
             </Col>
-            <Col xl={2}>
+            <Col xl={2} className="mt-md-0 mt-2">
               <Stack>
                 <Button type="submit" className="mb-2">
                   Add
