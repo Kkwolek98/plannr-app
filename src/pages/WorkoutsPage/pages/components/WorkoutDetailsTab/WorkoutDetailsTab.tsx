@@ -20,7 +20,7 @@ export default function WorkoutDetailsTab() {
       })
       .catch((error) => {
         displayToast({
-          type: "error",
+          type: "danger",
           title: "Workout update failed",
           message: error?.message,
         });

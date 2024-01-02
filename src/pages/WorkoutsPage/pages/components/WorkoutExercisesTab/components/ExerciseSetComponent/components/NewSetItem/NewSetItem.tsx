@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import { Button, Col, Form, InputGroup, Row, Stack } from "react-bootstrap";
 import { addItemToSet } from "../../../../../../../../../api/sets";
 import useExercises from "../../../../../../../../../hooks/useExercises";
+import { useToast } from "../../../../../../../../../hooks/useToast";
 import { Exercise } from "../../../../../../../../../types/exercise";
 import { ExerciseSet } from "../../../../../../../../../types/workout";
 import { useWorkoutContext } from "../../../../../../hooks/useWorkoutContext";
@@ -28,6 +29,7 @@ type FormValues = typeof initialData;
 export default function NewSetItem({ set, close }: NewSetItemProps) {
   const exercises = useExercises();
   const { setExerciseSet } = useWorkoutContext();
+  const { displayToast } = useToast();
   const onSubmit = (values: FormValues) => {
     const newItem = {
       details: values.details,
@@ -40,10 +42,23 @@ export default function NewSetItem({ set, close }: NewSetItemProps) {
       rest: values.rest,
     };
 
-    addItemToSet(set.id, newItem).then((res) => {
-      setExerciseSet(set.id, res);
-      close();
-    });
+    addItemToSet(set.id, newItem)
+      .then((res) => {
+        setExerciseSet(set.id, res);
+        close();
+        displayToast({
+          title: "Exercise added",
+          message: `Exercise has been added to set ${set.name}`,
+          type: "success",
+        });
+      })
+      .catch(() => {
+        displayToast({
+          title: "Error",
+          message: `Error adding exercise to set ${set.name}`,
+          type: "danger",
+        });
+      });
   };
   return (
     <Formik initialValues={initialData} onSubmit={onSubmit}>

@@ -4,7 +4,7 @@ export type Toast = {
   id: string;
   title: string;
   message?: string;
-  type: "success" | "error" | "warning" | "info";
+  type: "success" | "danger" | "warning" | "info";
 };
 
 const ToastContext = createContext<
