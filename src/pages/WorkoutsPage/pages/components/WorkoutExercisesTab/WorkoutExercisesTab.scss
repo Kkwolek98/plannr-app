@@ -1,0 +1,8 @@
+.workout-builder {
+  :first-child {
+    flex: 1;
+  }
+  :last-child {
+    flex: 0 0 20%;
+  }
+}

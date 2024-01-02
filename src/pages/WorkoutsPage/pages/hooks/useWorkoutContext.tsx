@@ -12,6 +12,8 @@ const WorkoutContext = createContext<
       workout: Workout | undefined;
       setWorkout: Dispatch<SetStateAction<Workout | undefined>>;
       setExerciseSet: (setId: string, exerciseSet: ExerciseSet) => void;
+      selectedSet: ExerciseSet | undefined;
+      setSelectedSet: Dispatch<SetStateAction<ExerciseSet | undefined>>;
     }
   | undefined
 >(undefined);
@@ -23,6 +25,7 @@ const WorkoutProvider = ({
   workout: Workout | undefined;
 }) => {
   const [workout, setWorkout] = useState<Workout>();
+  const [selectedSet, setSelectedSet] = useState<ExerciseSet>();
 
   const setExerciseSet = (setId: string, exerciseSet: ExerciseSet) => {
     setWorkout((prev) => {
@@ -38,7 +41,13 @@ const WorkoutProvider = ({
     });
   };
 
-  const context = { workout, setWorkout, setExerciseSet };
+  const context = {
+    workout,
+    setWorkout,
+    setExerciseSet,
+    selectedSet,
+    setSelectedSet,
+  };
 
   return (
     <WorkoutContext.Provider value={context}>

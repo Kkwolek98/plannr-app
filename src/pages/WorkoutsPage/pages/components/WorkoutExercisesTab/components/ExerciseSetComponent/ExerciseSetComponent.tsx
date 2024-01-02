@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Accordion, Button } from "react-bootstrap";
 import { ExerciseSet } from "../../../../../../../types/workout";
+import { useWorkoutContext } from "../../../../hooks/useWorkoutContext";
 import NewSetItem from "./components/NewSetItem/NewSetItem";
 import NoExercises from "./components/NoExercises/NoExercises";
 import SetItemComponent from "./components/SetItemComponent/SetItemComponent";
@@ -11,13 +12,21 @@ type ExerciseSetProps = {
 };
 
 export default function ExerciseSetComponent({ set, index }: ExerciseSetProps) {
+  const { selectedSet, setSelectedSet } = useWorkoutContext();
   const setLetter = useMemo(() => String.fromCharCode(65 + index), [index]);
   const [showAddExercise, setShowAddExercise] = useState(false);
   const addExercise = () => {
     setShowAddExercise(true);
   };
   return (
-    <Accordion.Item eventKey={set.id}>
+    <Accordion.Item
+      eventKey={set.id}
+      onClick={() => {
+        selectedSet?.id === set.id
+          ? setSelectedSet(undefined)
+          : setSelectedSet(set);
+      }}
+    >
       <Accordion.Header>
         {setLetter}. {set.name}
       </Accordion.Header>
