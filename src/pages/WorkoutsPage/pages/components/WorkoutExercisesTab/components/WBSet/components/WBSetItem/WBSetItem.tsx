@@ -8,7 +8,7 @@ type SetItemProps = {
   setLetter: string;
 };
 
-export default function SetItemComponent({
+export default function WBSetItem({
   setItem,
   className = "",
   index,

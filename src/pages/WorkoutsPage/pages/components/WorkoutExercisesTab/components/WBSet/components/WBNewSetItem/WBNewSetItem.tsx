@@ -26,7 +26,7 @@ const initialData = {
 
 type FormValues = typeof initialData;
 
-export default function NewSetItem({ set, close }: NewSetItemProps) {
+export default function WBNewSetItem({ set, close }: NewSetItemProps) {
   const exercises = useExercises();
   const { setExerciseSet } = useWorkoutContext();
   const { displayToast } = useToast();

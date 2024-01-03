@@ -15,7 +15,7 @@ const initialValues = {
 
 type FormValues = typeof initialValues;
 
-export default function NewExerciseSet({ close, index }: NewExerciseSetProps) {
+export default function WBNewSet({ close, index }: NewExerciseSetProps) {
   const { workout, setWorkout } = useWorkoutContext();
   const setLetter = useMemo(() => String.fromCharCode(65 + index), [index]);
   const addSet = (values: FormValues) => {

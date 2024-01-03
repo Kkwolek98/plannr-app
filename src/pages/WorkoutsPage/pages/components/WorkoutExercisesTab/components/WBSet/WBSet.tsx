@@ -2,16 +2,16 @@ import { useMemo, useState } from "react";
 import { Accordion, Button } from "react-bootstrap";
 import { ExerciseSet } from "../../../../../../../types/workout";
 import { useWorkoutContext } from "../../../../hooks/useWorkoutContext";
-import NewSetItem from "./components/NewSetItem/NewSetItem";
-import NoExercises from "./components/NoExercises/NoExercises";
-import SetItemComponent from "./components/SetItemComponent/SetItemComponent";
+import WBNewSetItem from "./components/WBNewSetItem/WBNewSetItem";
+import WBNoExercises from "./components/WBNoExercises/WBNoExercises";
+import WBSetItem from "./components/WBSetItem/WBSetItem";
 
 type ExerciseSetProps = {
   set: ExerciseSet;
   index: number;
 };
 
-export default function ExerciseSetComponent({ set, index }: ExerciseSetProps) {
+export default function WBSet({ set, index }: ExerciseSetProps) {
   const { selectedSet, setSelectedSet } = useWorkoutContext();
   const setLetter = useMemo(() => String.fromCharCode(65 + index), [index]);
   const [showAddExercise, setShowAddExercise] = useState(false);
@@ -32,7 +32,7 @@ export default function ExerciseSetComponent({ set, index }: ExerciseSetProps) {
       </Accordion.Header>
       <Accordion.Body>
         {set.setItems?.map((setItem, index) => (
-          <SetItemComponent
+          <WBSetItem
             setLetter={setLetter}
             setItem={setItem}
             index={index}
@@ -40,10 +40,10 @@ export default function ExerciseSetComponent({ set, index }: ExerciseSetProps) {
             key={setItem.id}
           />
         ))}
-        {set.setItems?.length === 0 && !showAddExercise && <NoExercises />}
+        {set.setItems?.length === 0 && !showAddExercise && <WBNoExercises />}
         <hr />
         {showAddExercise ? (
-          <NewSetItem set={set} close={() => setShowAddExercise(false)} />
+          <WBNewSetItem set={set} close={() => setShowAddExercise(false)} />
         ) : (
           <div className="d-flex justify-content-center mt-2">
             <Button onClick={addExercise}>Add new</Button>
