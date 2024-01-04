@@ -25,7 +25,7 @@ const WorkoutProvider = ({
   workout: Workout | undefined;
 }) => {
   const [workout, setWorkout] = useState<Workout>();
-  const [selectedSet, setSelectedSet] = useState<ExerciseSet>();
+  const [_selectedSet, setSelectedSet] = useState<ExerciseSet>();
 
   const setExerciseSet = (setId: string, exerciseSet: ExerciseSet) => {
     setWorkout((prev) => {
@@ -40,6 +40,8 @@ const WorkoutProvider = ({
       return { ...prev };
     });
   };
+
+  const selectedSet = workout?.sets?.find((set) => set.id === _selectedSet?.id);
 
   const context = {
     workout,

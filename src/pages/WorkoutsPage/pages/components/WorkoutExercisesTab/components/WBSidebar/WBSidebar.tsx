@@ -14,7 +14,6 @@ export default function WBSidebar() {
   const handleEdit = (values: Partial<ExerciseSet>) => {
     updateSet(values).then((res) => {
       setExerciseSet(selectedSet!.id, res);
-      setSelectedSet(res);
       setIsEditMode(false);
     });
   };
