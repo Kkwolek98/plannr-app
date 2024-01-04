@@ -9,7 +9,7 @@ import { useWorkoutContext } from "../../../../hooks/useWorkoutContext";
 
 export default function WBSidebar() {
   const [isEditMode, setIsEditMode] = useState(false);
-  const { selectedSet, setExerciseSet, setSelectedSet } = useWorkoutContext();
+  const { selectedSet, setExerciseSet } = useWorkoutContext();
 
   const handleEdit = (values: Partial<ExerciseSet>) => {
     updateSet(values).then((res) => {
@@ -65,7 +65,11 @@ export default function WBSidebar() {
 
           <Row className="mb-2">
             <Col>
-              {!isEditMode && <p>{selectedSet.description}</p>}
+              {!isEditMode && (
+                <p className={!selectedSet.description ? "text-muted" : ""}>
+                  {selectedSet.description || "No description"}
+                </p>
+              )}
               {isEditMode && (
                 <>
                   <Form.Label>Description</Form.Label>
