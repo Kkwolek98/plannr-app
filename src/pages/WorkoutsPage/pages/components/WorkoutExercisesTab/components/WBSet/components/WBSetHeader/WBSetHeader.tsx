@@ -35,12 +35,12 @@ export default function WBSetHeader({
         isSetSelected ? "bg-primary bg-opacity-10" : ""
       }`}
     >
-      <Col xl={8}>
+      <Col xs={8}>
         <span>
           {setLetter}. {set.name} ({set.setItems?.length} exercises)
         </span>
       </Col>
-      <Col xl={3} className="d-flex justify-content-end pe-3">
+      <Col xs={3} className="d-flex justify-content-end pe-3">
         <button type="button" className="btn-clean btn-circle text-muted me-4">
           <FontAwesomeIcon icon={faTrash} />
         </button>
@@ -48,7 +48,7 @@ export default function WBSetHeader({
           <FontAwesomeIcon icon={faGripVertical} />
         </button>
       </Col>
-      <Col xl={1} className="d-flex justify-content-center">
+      <Col xs={1} className="d-flex justify-content-center">
         <button
           type="button"
           className="btn-clean btn-circle text-muted"
