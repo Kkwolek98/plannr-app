@@ -29,8 +29,8 @@ export default function WBSetHeader({
   const isSetSelected = selectedSet?.id === set.id;
 
   return (
-    <button
-      type="button"
+    // biome-ignore lint/a11y/useValidAnchor: <TODO: anchors for sets>
+    <a
       className={`btn-clean p-3 d-flex w-100 ${
         isSetSelected ? "bg-primary bg-opacity-10" : ""
       }`}
@@ -61,6 +61,6 @@ export default function WBSetHeader({
           />
         </button>
       </Col>
-    </button>
+    </a>
   );
 }
