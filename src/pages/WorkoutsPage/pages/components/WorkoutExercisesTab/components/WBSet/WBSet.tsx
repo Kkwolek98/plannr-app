@@ -4,6 +4,7 @@ import { ExerciseSet } from "../../../../../../../types/workout";
 import { useWorkoutContext } from "../../../../hooks/useWorkoutContext";
 import WBNewSetItem from "./components/WBNewSetItem/WBNewSetItem";
 import WBNoExercises from "./components/WBNoExercises/WBNoExercises";
+import WBSetHeader from "./components/WBSetHeader/WBSetHeader";
 import WBSetItem from "./components/WBSetItem/WBSetItem";
 
 type ExerciseSetProps = {
@@ -27,9 +28,7 @@ export default function WBSet({ set, index }: ExerciseSetProps) {
           : setSelectedSet(set);
       }}
     >
-      <Accordion.Header>
-        {setLetter}. {set.name}
-      </Accordion.Header>
+      <WBSetHeader set={set} setLetter={setLetter} eventKey={set.id} />
       <Accordion.Body>
         {set.setItems?.map((setItem, index) => (
           <WBSetItem

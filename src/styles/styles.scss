@@ -3,3 +3,14 @@
 
   aspect-ratio: 1 / 1;
 }
+
+.btn-clean {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.transition-all--0-3s {
+  transition: all 0.3s ease-in-out;
+}
