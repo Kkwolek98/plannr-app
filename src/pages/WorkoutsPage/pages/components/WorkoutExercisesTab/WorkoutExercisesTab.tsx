@@ -7,12 +7,12 @@ import WBNewSet from "./components/WBSet/components/WBNewSet/WBNewSet";
 import WBSidebar from "./components/WBSidebar/WBSidebar";
 
 export default function WorkoutExercisesTab() {
-  const { workout } = useWorkoutContext();
+  const { workout, selectedSet } = useWorkoutContext();
   const [addingNewSet, setAddingNewSet] = useState(false);
 
   return (
     <Row>
-      <Col xl={9}>
+      <Col xl={selectedSet ? 9 : 12}>
         <Accordion>
           {workout!.sets.map((set, index) => (
             <WBSet index={index} set={set} key={set.id} />
@@ -33,7 +33,7 @@ export default function WorkoutExercisesTab() {
           )}
         </Accordion>
       </Col>
-      <Col>
+      <Col xl={selectedSet ? 3 : 0}>
         <WBSidebar />
       </Col>
     </Row>

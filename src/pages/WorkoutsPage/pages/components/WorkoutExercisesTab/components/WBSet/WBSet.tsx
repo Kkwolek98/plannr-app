@@ -19,6 +19,7 @@ export default function WBSet({ set, index }: ExerciseSetProps) {
   const addExercise = () => {
     setShowAddExercise(true);
   };
+
   return (
     <Accordion.Item
       eventKey={set.id}
