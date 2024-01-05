@@ -13,6 +13,11 @@ export default function WorkoutExercisesTab() {
   return (
     <Row>
       <Col xl={selectedSet ? 9 : 12}>
+        {workout!.sets.length === 0 && !addingNewSet && (
+          <div className="d-flex justify-content-center text-muted p-2">
+            No sets
+          </div>
+        )}
         <Accordion>
           {workout!.sets.map((set, index) => (
             <WBSet index={index} set={set} key={set.id} />
