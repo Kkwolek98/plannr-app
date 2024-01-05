@@ -30,3 +30,12 @@ export function addNewSet(
 		.post(`${config.baseUrl}/workouts/${workoutId}/sets`, set)
 		.then((res) => res.data);
 }
+
+export function reorderSet(
+	workoutId: string,
+	reorder: { setId: string; moveTo: number },
+): Promise<Workout> {
+	return axios
+		.put(`${config.baseUrl}/workouts/${workoutId}/sets/reorder`, reorder)
+		.then((res) => res.data);
+}
