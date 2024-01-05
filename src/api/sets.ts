@@ -16,3 +16,9 @@ export function updateSet(set: Partial<ExerciseSet>): Promise<ExerciseSet> {
 		.put(`${config.baseUrl}/sets/${set.id}`, set)
 		.then((res) => res.data);
 }
+
+export function deleteSet(setId: string): Promise<{ removed: boolean }> {
+	return axios
+		.delete(`${config.baseUrl}/sets/${setId}`)
+		.then((res) => res.data);
+}

@@ -15,6 +15,7 @@ const WorkoutContext = createContext<
       setExerciseSet: (setId: string, exerciseSet: ExerciseSet) => void;
       selectedSet: ExerciseSet | undefined;
       setSelectedSet: Dispatch<SetStateAction<ExerciseSet | undefined>>;
+      removeExerciseSet: (setId: string) => void;
     }
   | undefined
 >(undefined);
@@ -55,12 +56,23 @@ const WorkoutProvider = ({
     });
   };
 
+  const removeExerciseSet = (setId: string) => {
+    _setWorkout((prev) => {
+      if (!prev) return prev;
+
+      prev.sets = prev.sets.filter((set) => set.id !== setId);
+
+      return { ...prev };
+    });
+  };
+
   const selectedSet = workout?.sets?.find((set) => set.id === _selectedSet?.id);
 
   const context = {
     workout,
     setWorkout,
     setExerciseSet,
+    removeExerciseSet,
     selectedSet,
     setSelectedSet,
   };
