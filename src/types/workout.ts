@@ -13,6 +13,7 @@ export type ExerciseSet = {
 	name: string;
 	setItems: SetItem[];
 	description?: string;
+	sort: number;
 	rest?: number;
 };
 

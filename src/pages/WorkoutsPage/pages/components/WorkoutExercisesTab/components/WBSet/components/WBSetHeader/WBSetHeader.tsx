@@ -50,7 +50,7 @@ export default function WBSetHeader({
         </button>
         <OverlayTrigger
           trigger="click"
-          placement="right"
+          placement="left"
           overlay={<WBReorderMenu set={set} />}
         >
           <WBReorderButton />
