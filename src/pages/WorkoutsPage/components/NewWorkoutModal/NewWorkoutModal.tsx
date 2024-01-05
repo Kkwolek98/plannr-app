@@ -1,5 +1,6 @@
 import { Formik } from "formik";
 import { Button, Form, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { createWorkout } from "../../../../api/workouts";
 import { useToast } from "../../../../hooks/useToast";
 
@@ -17,16 +18,18 @@ type FormValues = typeof initialValues;
 
 export default function NewWorkoutModal({ show, close }: NewWorkoutModalProps) {
   const { displayToast } = useToast();
+  const navigate = useNavigate();
 
   const addWorkout = (values: FormValues) => {
-    console.log(values);
-    createWorkout(values).then(() => {
+    createWorkout(values).then((res) => {
       close();
       displayToast({
         title: "Workout added",
         message: `Workout ${values.name} has been added`,
         type: "success",
       });
+
+      navigate(`/workouts/${res.id}/edit`);
     });
   };
 
