@@ -5,10 +5,10 @@ import { postExercise } from "../../../../api/exercises";
 import YTVideo from "../../../../components/YTVideo/YTVideo";
 import { useToast } from "../../../../hooks/useToast";
 
-interface NewExerciseModalProps {
+type NewExerciseModalProps = {
   show: boolean;
   close: () => void;
-}
+};
 
 const newExerciseFormInitialValues = {
   name: "",
