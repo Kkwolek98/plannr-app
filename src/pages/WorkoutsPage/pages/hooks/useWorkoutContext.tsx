@@ -2,6 +2,7 @@ import {
   Dispatch,
   SetStateAction,
   createContext,
+  useCallback,
   useContext,
   useState,
 } from "react";
@@ -10,7 +11,7 @@ import { ExerciseSet, Workout } from "../../../../types/workout";
 const WorkoutContext = createContext<
   | {
       workout: Workout | undefined;
-      setWorkout: Dispatch<SetStateAction<Workout | undefined>>;
+      setWorkout: (workout: Workout | undefined) => void;
       setExerciseSet: (setId: string, exerciseSet: ExerciseSet) => void;
       selectedSet: ExerciseSet | undefined;
       setSelectedSet: Dispatch<SetStateAction<ExerciseSet | undefined>>;
@@ -24,11 +25,24 @@ const WorkoutProvider = ({
   children: React.ReactNode;
   workout: Workout | undefined;
 }) => {
-  const [workout, setWorkout] = useState<Workout>();
+  const [workout, _setWorkout] = useState<Workout>();
   const [_selectedSet, setSelectedSet] = useState<ExerciseSet>();
 
+  const setWorkout = useCallback((workout: Workout | undefined) => {
+    if (!workout) {
+      _setWorkout(undefined);
+      setSelectedSet(undefined);
+      return;
+    }
+
+    workout.sets = workout.sets?.sort((a, b) => a.sort - b.sort);
+
+    _setWorkout(workout);
+    setSelectedSet(undefined);
+  }, []);
+
   const setExerciseSet = (setId: string, exerciseSet: ExerciseSet) => {
-    setWorkout((prev) => {
+    _setWorkout((prev) => {
       if (!prev) return prev;
 
       const foundSetIndex = prev.sets?.findIndex((set) => set.id === setId);
