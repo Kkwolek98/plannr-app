@@ -2,14 +2,12 @@ import { faChevronUp, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { AccordionContext, Col, useAccordionButton } from "react-bootstrap";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { deleteSet } from "../../../../../../../../../api/sets";
 import { useToast } from "../../../../../../../../../hooks/useToast";
 import { ExerciseSet } from "../../../../../../../../../types/workout";
 import { useWorkoutContext } from "../../../../../../hooks/useWorkoutContext";
 import "./WBSetHeader.scss";
-import WBReorderButton from "./components/WBReorderButton/WBReorderButton";
-import WBReorderMenu from "./components/WBReorderMenu/WBReorderMenu";
+import WBReorder from "./components/WBReorder/WBReorder";
 
 type WBSetHeaderProps = {
   set: ExerciseSet;
@@ -68,13 +66,7 @@ export default function WBSetHeader({
         >
           <FontAwesomeIcon icon={faTrash} />
         </button>
-        <OverlayTrigger
-          trigger="click"
-          placement="left"
-          overlay={<WBReorderMenu set={set} />}
-        >
-          <WBReorderButton />
-        </OverlayTrigger>
+        <WBReorder set={set} />
       </Col>
       <Col xs={1} className="d-flex justify-content-center">
         <button
