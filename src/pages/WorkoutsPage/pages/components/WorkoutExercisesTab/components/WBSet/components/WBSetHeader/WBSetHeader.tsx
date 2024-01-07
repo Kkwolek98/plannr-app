@@ -13,12 +13,14 @@ type WBSetHeaderProps = {
   set: ExerciseSet;
   setLetter: string;
   eventKey: string;
+  onClick: () => void;
 };
 
 export default function WBSetHeader({
   set,
   setLetter,
   eventKey,
+  onClick,
 }: WBSetHeaderProps) {
   const accordionSwitch = useAccordionButton(eventKey, (e) => {
     e.stopPropagation();
@@ -43,11 +45,12 @@ export default function WBSetHeader({
   };
 
   return (
-    // biome-ignore lint/a11y/useValidAnchor: <TODO: anchors for sets>
     <a
       className={`btn-clean p-3 d-flex w-100 ${
         isSetSelected ? "bg-primary bg-opacity-10" : ""
       }`}
+      // biome-ignore lint/a11y/useValidAnchor: <explanation>
+      onClick={onClick}
     >
       <Col xs={8}>
         <span>

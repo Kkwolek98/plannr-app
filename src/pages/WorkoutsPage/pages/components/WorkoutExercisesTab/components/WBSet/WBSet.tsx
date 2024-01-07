@@ -21,15 +21,17 @@ export default function WBSet({ set, index }: ExerciseSetProps) {
   };
 
   return (
-    <Accordion.Item
-      eventKey={set.id}
-      onClick={() => {
-        selectedSet?.id === set.id
-          ? setSelectedSet(undefined)
-          : setSelectedSet(set);
-      }}
-    >
-      <WBSetHeader set={set} setLetter={setLetter} eventKey={set.id} />
+    <Accordion.Item eventKey={set.id}>
+      <WBSetHeader
+        set={set}
+        setLetter={setLetter}
+        eventKey={set.id}
+        onClick={() => {
+          selectedSet?.id === set.id
+            ? setSelectedSet(undefined)
+            : setSelectedSet(set);
+        }}
+      />
       <Accordion.Body>
         {set.setItems?.map((setItem, index) => (
           <WBSetItem
