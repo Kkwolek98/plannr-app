@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { createWorkout } from "../../../../api/workouts";
+import { createWorkout$ } from "../../../../api/workouts";
 import { useToast } from "../../../../hooks/useToast";
 
 type NewWorkoutModalProps = {
@@ -21,7 +21,7 @@ export default function NewWorkoutModal({ show, close }: NewWorkoutModalProps) {
   const navigate = useNavigate();
 
   const addWorkout = (values: FormValues) => {
-    createWorkout(values).then((res) => {
+    createWorkout$(values).then((res) => {
       close();
       displayToast({
         title: "Workout added",

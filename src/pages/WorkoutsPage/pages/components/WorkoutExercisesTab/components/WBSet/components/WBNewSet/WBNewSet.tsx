@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { useMemo } from "react";
 import { Accordion, Button, Form, Stack } from "react-bootstrap";
-import { addNewSet } from "../../../../../../../../../api/workouts";
+import { addNewSet$ } from "../../../../../../../../../api/workouts";
 import { useWorkoutContext } from "../../../../../../hooks/useWorkoutContext";
 
 type NewExerciseSetProps = {
@@ -19,7 +19,7 @@ export default function WBNewSet({ close, index }: NewExerciseSetProps) {
   const { workout, setWorkout } = useWorkoutContext();
   const setLetter = useMemo(() => String.fromCharCode(65 + index), [index]);
   const addSet = (values: FormValues) => {
-    addNewSet(workout!.id, values).then((res) => {
+    addNewSet$(workout!.id, values).then((res) => {
       setWorkout({ ...res });
       close();
     });

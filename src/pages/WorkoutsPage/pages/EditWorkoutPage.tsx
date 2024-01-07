@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useParams } from "react-router-dom";
-import { getWorkout } from "../../../api/workouts";
+import { getWorkout$ } from "../../../api/workouts";
 import WorkoutDetailsTab from "./components/WorkoutDetailsTab/WorkoutDetailsTab";
 import WorkoutExercisesTab from "./components/WorkoutExercisesTab/WorkoutExercisesTab";
 import { useWorkoutContext } from "./hooks/useWorkoutContext";
@@ -13,7 +13,7 @@ export default function EditWorkoutPage() {
 
   useEffect(() => {
     if (id) {
-      getWorkout(id).then((workout) => setWorkout(workout));
+      getWorkout$(id).then((workout) => setWorkout(workout));
     }
   }, [id, setWorkout]);
 

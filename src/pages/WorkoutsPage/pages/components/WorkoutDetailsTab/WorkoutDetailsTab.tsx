@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import { Button, Col, Form, Row, Stack } from "react-bootstrap";
-import { updateWorkout } from "../../../../../api/workouts";
+import { updateWorkout$ } from "../../../../../api/workouts";
 import { useToast } from "../../../../../hooks/useToast";
 import { Workout } from "../../../../../types/workout";
 import { useWorkoutContext } from "../../hooks/useWorkoutContext";
@@ -10,7 +10,7 @@ export default function WorkoutDetailsTab() {
   const { displayToast } = useToast();
 
   const submitForm = (values: Workout) => {
-    updateWorkout(values)
+    updateWorkout$(values)
       .then((workout) => {
         setWorkout(workout);
         displayToast({

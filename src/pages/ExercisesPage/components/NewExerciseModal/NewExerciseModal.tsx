@@ -1,7 +1,7 @@
 import { Formik, FormikProps } from "formik";
 import { useRef } from "react";
 import { Badge, Button, Form, InputGroup, Modal } from "react-bootstrap";
-import { postExercise } from "../../../../api/exercises";
+import { postExercise$ } from "../../../../api/exercises";
 import YTVideo from "../../../../components/YTVideo/YTVideo";
 import { useToast } from "../../../../hooks/useToast";
 
@@ -43,7 +43,7 @@ export default function NewExerciseModal({
       tags: values.tags,
     };
 
-    postExercise(newExercise).then(() => {
+    postExercise$(newExercise).then(() => {
       close();
       displayToast({
         title: "Exercise added",

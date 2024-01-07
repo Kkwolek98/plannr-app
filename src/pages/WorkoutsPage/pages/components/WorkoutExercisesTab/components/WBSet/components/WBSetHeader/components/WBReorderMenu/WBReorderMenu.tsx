@@ -8,7 +8,7 @@ import { RefObject, forwardRef, useState } from "react";
 import { Form, Popover } from "react-bootstrap";
 import { ExerciseSet } from "../../../../../../../../../../../types/workout";
 
-import { reorderSet } from "../../../../../../../../../../../api/workouts";
+import { reorderSet$ } from "../../../../../../../../../../../api/workouts";
 import { useWorkoutContext } from "../../../../../../../../hooks/useWorkoutContext";
 import "./WBReorderMenu.scss";
 
@@ -26,7 +26,7 @@ const WBReorderMenu = forwardRef(
     );
 
     const moveUp = () => {
-      reorderSet(workout!.id, { setId: set.id, moveTo: set.sort - 1 }).then(
+      reorderSet$(workout!.id, { setId: set.id, moveTo: set.sort - 1 }).then(
         (res) => {
           if (res) {
             onReorder();
@@ -37,7 +37,7 @@ const WBReorderMenu = forwardRef(
     };
 
     const moveDown = () => {
-      reorderSet(workout!.id, { setId: set.id, moveTo: set.sort + 1 }).then(
+      reorderSet$(workout!.id, { setId: set.id, moveTo: set.sort + 1 }).then(
         (res) => {
           if (res) {
             onReorder();
@@ -48,7 +48,7 @@ const WBReorderMenu = forwardRef(
     };
 
     const setSort = () => {
-      reorderSet(workout!.id, {
+      reorderSet$(workout!.id, {
         setId: set.id,
         moveTo: setLetter.charCodeAt(0) - 65,
       }).then((res) => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getWorkout } from "../api/workouts";
+import { getWorkout$ } from "../api/workouts";
 import { Workout } from "../types/workout";
 
 export default function useWorkout(id: string | undefined) {
@@ -7,7 +7,7 @@ export default function useWorkout(id: string | undefined) {
 
 	useEffect(() => {
 		if (id) {
-			getWorkout(id).then((res) => {
+			getWorkout$(id).then((res) => {
 				setWorkout(res);
 			});
 		}

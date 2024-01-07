@@ -2,27 +2,27 @@ import axios from "axios";
 import config from "../core/config";
 import { Workout } from "../types/workout";
 
-export function getWorkouts(): Promise<Workout[]> {
+export function getWorkouts$(): Promise<Workout[]> {
 	return axios.get(`${config.baseUrl}/workouts`).then((res) => res.data);
 }
 
-export function getWorkout(id: string): Promise<Workout> {
+export function getWorkout$(id: string): Promise<Workout> {
 	return axios.get(`${config.baseUrl}/workouts/${id}`).then((res) => res.data);
 }
 
-export function createWorkout(workout: Partial<Workout>): Promise<Workout> {
+export function createWorkout$(workout: Partial<Workout>): Promise<Workout> {
 	return axios
 		.post(`${config.baseUrl}/workouts`, workout)
 		.then((res) => res.data);
 }
 
-export function updateWorkout(workout: Workout): Promise<Workout> {
+export function updateWorkout$(workout: Workout): Promise<Workout> {
 	return axios
 		.put(`${config.baseUrl}/workouts/${workout.id}`, workout)
 		.then((res) => res.data);
 }
 
-export function addNewSet(
+export function addNewSet$(
 	workoutId: string,
 	set: { name: string },
 ): Promise<Workout> {
@@ -31,7 +31,7 @@ export function addNewSet(
 		.then((res) => res.data);
 }
 
-export function reorderSet(
+export function reorderSet$(
 	workoutId: string,
 	reorder: { setId: string; moveTo: number },
 ): Promise<Workout> {
