@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Formik } from "formik";
 import { useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import { updateSet } from "../../../../../../../api/sets";
+import { updateSet$ } from "../../../../../../../api/sets";
 import { ExerciseSet } from "../../../../../../../types/workout";
 import { useWorkoutContext } from "../../../../hooks/useWorkoutContext";
 
@@ -12,7 +12,7 @@ export default function WBSidebar() {
   const { selectedSet, setExerciseSet } = useWorkoutContext();
 
   const handleEdit = (values: Partial<ExerciseSet>) => {
-    updateSet(values).then((res) => {
+    updateSet$(values).then((res) => {
       setExerciseSet(selectedSet!.id, res);
       setIsEditMode(false);
     });

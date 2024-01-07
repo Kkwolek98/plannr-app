@@ -2,7 +2,7 @@ import { faChevronUp, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { AccordionContext, Col, useAccordionButton } from "react-bootstrap";
-import { deleteSet } from "../../../../../../../../../api/sets";
+import { deleteSet$ } from "../../../../../../../../../api/sets";
 import { useToast } from "../../../../../../../../../hooks/useToast";
 import { ExerciseSet } from "../../../../../../../../../types/workout";
 import { useWorkoutContext } from "../../../../../../hooks/useWorkoutContext";
@@ -32,7 +32,7 @@ export default function WBSetHeader({
   const isSetSelected = selectedSet?.id === set.id;
 
   const removeSet = () => {
-    deleteSet(set.id).then((res) => {
+    deleteSet$(set.id).then((res) => {
       if (res.removed) {
         removeExerciseSet(set.id);
         displayToast({

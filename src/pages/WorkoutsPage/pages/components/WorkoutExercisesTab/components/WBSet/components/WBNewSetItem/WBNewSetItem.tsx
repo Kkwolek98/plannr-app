@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import { Button, Col, Form, InputGroup, Row, Stack } from "react-bootstrap";
-import { addItemToSet } from "../../../../../../../../../api/sets";
+import { addItemToSet$ } from "../../../../../../../../../api/sets";
 import useExercises from "../../../../../../../../../hooks/useExercises";
 import { useToast } from "../../../../../../../../../hooks/useToast";
 import { Exercise } from "../../../../../../../../../types/exercise";
@@ -42,7 +42,7 @@ export default function WBNewSetItem({ set, close }: NewSetItemProps) {
       rest: values.rest,
     };
 
-    addItemToSet(set.id, newItem)
+    addItemToSet$(set.id, newItem)
       .then((res) => {
         setExerciseSet(set.id, res);
         close();

@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "../core/config";
 import { ExerciseSet, SetItem } from "../types/workout";
 
-export function addItemToSet(
+export function addItemToSet$(
 	setId: string,
 	item: Omit<SetItem, "id">,
 ): Promise<ExerciseSet> {
@@ -11,14 +11,20 @@ export function addItemToSet(
 		.then((res) => res.data);
 }
 
-export function updateSet(set: Partial<ExerciseSet>): Promise<ExerciseSet> {
+export function updateSet$(set: Partial<ExerciseSet>): Promise<ExerciseSet> {
 	return axios
 		.put(`${config.baseUrl}/sets/${set.id}`, set)
 		.then((res) => res.data);
 }
 
-export function deleteSet(setId: string): Promise<{ removed: boolean }> {
+export function deleteSet$(setId: string): Promise<{ removed: boolean }> {
 	return axios
 		.delete(`${config.baseUrl}/sets/${setId}`)
+		.then((res) => res.data);
+}
+
+export function removeSetItem$(itemId: string): Promise<{ removed: boolean }> {
+	return axios
+		.delete(`${config.baseUrl}/sets/items/${itemId}`)
 		.then((res) => res.data);
 }
