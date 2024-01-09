@@ -17,7 +17,7 @@ export default function WBSetItemWrapper({
   const setLetter = useMemo(() => String.fromCharCode(65 + index), [index]);
   const [isEditMode, setIsEditMode] = useState(false);
 
-  if (isEditMode) {
+  if (!isEditMode) {
     return (
       <WBSetItem
         setLetter={setLetter}

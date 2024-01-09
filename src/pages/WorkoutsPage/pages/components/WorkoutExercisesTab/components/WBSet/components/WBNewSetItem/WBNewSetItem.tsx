@@ -3,9 +3,9 @@ import { Button, Col, Form, InputGroup, Row, Stack } from "react-bootstrap";
 import { addItemToSet$ } from "../../../../../../../../../api/sets";
 import useExercises from "../../../../../../../../../hooks/useExercises";
 import { useToast } from "../../../../../../../../../hooks/useToast";
-import { Exercise } from "../../../../../../../../../types/exercise";
 import { ExerciseSet, SetItem } from "../../../../../../../../../types/workout";
 import { useWorkoutContext } from "../../../../../../hooks/useWorkoutContext";
+import useSetItemInitiaFormlValue from "./hooks/useSetItemInitialFormValue";
 
 type NewSetItemProps = {
   set: ExerciseSet;
@@ -13,24 +13,15 @@ type NewSetItemProps = {
   close: () => void;
 };
 
-const initialData = {
-  details: {} as Exercise,
-  repRangeType: "exact" as "exact" | "range",
-  repMin: 0,
-  repMax: 0,
-  repExact: 0,
-  repWeight: 0,
-  repType: "kg",
-  sort: 0,
-  rest: 0,
-};
-
-type FormValues = typeof initialData;
-
 export default function WBNewSetItem({ set, setItem, close }: NewSetItemProps) {
   const exercises = useExercises();
   const { setExerciseSet } = useWorkoutContext();
   const { displayToast } = useToast();
+
+  const initialData = useSetItemInitiaFormlValue(setItem);
+
+  type FormValues = typeof initialData;
+
   const onSubmit = (values: FormValues) => {
     const newItem = {
       details: values.details,
