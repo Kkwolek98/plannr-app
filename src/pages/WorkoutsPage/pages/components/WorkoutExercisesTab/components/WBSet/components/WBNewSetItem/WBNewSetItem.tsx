@@ -4,11 +4,12 @@ import { addItemToSet$ } from "../../../../../../../../../api/sets";
 import useExercises from "../../../../../../../../../hooks/useExercises";
 import { useToast } from "../../../../../../../../../hooks/useToast";
 import { Exercise } from "../../../../../../../../../types/exercise";
-import { ExerciseSet } from "../../../../../../../../../types/workout";
+import { ExerciseSet, SetItem } from "../../../../../../../../../types/workout";
 import { useWorkoutContext } from "../../../../../../hooks/useWorkoutContext";
 
 type NewSetItemProps = {
   set: ExerciseSet;
+  setItem?: SetItem;
   close: () => void;
 };
 
@@ -26,7 +27,7 @@ const initialData = {
 
 type FormValues = typeof initialData;
 
-export default function WBNewSetItem({ set, close }: NewSetItemProps) {
+export default function WBNewSetItem({ set, setItem, close }: NewSetItemProps) {
   const exercises = useExercises();
   const { setExerciseSet } = useWorkoutContext();
   const { displayToast } = useToast();
@@ -60,6 +61,7 @@ export default function WBNewSetItem({ set, close }: NewSetItemProps) {
         });
       });
   };
+
   return (
     <Formik initialValues={initialData} onSubmit={onSubmit}>
       {({ values, handleChange, handleSubmit, resetForm }) => (

@@ -1,4 +1,4 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Row } from "react-bootstrap";
 import { removeSetItem$ } from "../../../../../../../../../api/sets";
@@ -10,6 +10,7 @@ type SetItemProps = {
   className?: string;
   index: number;
   setLetter: string;
+  onEnterEditMode: () => void;
 };
 
 export default function WBSetItem({
@@ -17,6 +18,7 @@ export default function WBSetItem({
   className = "",
   index,
   setLetter,
+  onEnterEditMode,
 }: SetItemProps) {
   const { removeSetItem } = useWorkoutContext();
   const remove = () => {
@@ -48,7 +50,7 @@ export default function WBSetItem({
       </Col>
       <Col xl={1} />
       <Col xl={2}>{setItem.rest ? `${setItem.rest} min rest` : "No rest"}</Col>
-      <Col xl={2}>
+      <Col xl={2} className="d-flex justify-content-center">
         <button
           type="button"
           className="btn-clean btn-circle text-muted delete-button"
@@ -56,6 +58,14 @@ export default function WBSetItem({
           onClick={remove}
         >
           <FontAwesomeIcon icon={faTrash} />
+        </button>
+        <button
+          type="button"
+          className="btn-clean btn-circle text-muted"
+          title="Edit"
+          onClick={onEnterEditMode}
+        >
+          <FontAwesomeIcon icon={faPencil} />
         </button>
       </Col>
     </Row>

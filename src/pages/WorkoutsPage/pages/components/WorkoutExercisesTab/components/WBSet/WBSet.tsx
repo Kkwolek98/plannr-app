@@ -5,7 +5,7 @@ import { useWorkoutContext } from "../../../../hooks/useWorkoutContext";
 import WBNewSetItem from "./components/WBNewSetItem/WBNewSetItem";
 import WBNoExercises from "./components/WBNoExercises/WBNoExercises";
 import WBSetHeader from "./components/WBSetHeader/WBSetHeader";
-import WBSetItem from "./components/WBSetItem/WBSetItem";
+import WBSetItemWrapper from "./components/WBSetItemWrapper/WBSetItemWrapper";
 
 type ExerciseSetProps = {
   set: ExerciseSet;
@@ -13,8 +13,8 @@ type ExerciseSetProps = {
 };
 
 export default function WBSet({ set, index }: ExerciseSetProps) {
-  const { selectedSet, setSelectedSet } = useWorkoutContext();
   const setLetter = useMemo(() => String.fromCharCode(65 + index), [index]);
+  const { selectedSet, setSelectedSet } = useWorkoutContext();
   const [showAddExercise, setShowAddExercise] = useState(false);
   const addExercise = () => {
     setShowAddExercise(true);
@@ -34,13 +34,7 @@ export default function WBSet({ set, index }: ExerciseSetProps) {
       />
       <Accordion.Body>
         {set.setItems?.map((setItem, index) => (
-          <WBSetItem
-            setLetter={setLetter}
-            setItem={setItem}
-            index={index}
-            className="mb-2"
-            key={setItem.id}
-          />
+          <WBSetItemWrapper setItem={setItem} index={index} key={setItem.id} />
         ))}
         {set.setItems?.length === 0 && !showAddExercise && <WBNoExercises />}
         <hr />
