@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { SetItem } from "../../../../../../../../../types/workout";
 import WBSetItem from "../WBSetItem/WBSetItem";
+import WBSetItemForm from "../WBSetItemForm/WBSetItemForm";
 
 type WBSetItemWrapperProps = {
   setItem: SetItem;
@@ -30,13 +31,5 @@ export default function WBSetItemWrapper({
       />
     );
   }
-  return (
-    <></>
-    // <WBSetItem
-    //   setItem={setItem}
-    //   index={index}
-    //   setLetter={setLetter}
-    //   onEnterEditMode={() => setIsEditMode(true)}
-    // />
-  );
+  return <WBSetItemForm setItem={setItem} close={() => setIsEditMode(false)} />;
 }

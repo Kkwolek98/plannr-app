@@ -2,9 +2,9 @@ import { useMemo, useState } from "react";
 import { Accordion, Button } from "react-bootstrap";
 import { ExerciseSet } from "../../../../../../../types/workout";
 import { useWorkoutContext } from "../../../../hooks/useWorkoutContext";
-import WBNewSetItem from "./components/WBNewSetItem/WBNewSetItem";
 import WBNoExercises from "./components/WBNoExercises/WBNoExercises";
 import WBSetHeader from "./components/WBSetHeader/WBSetHeader";
+import WBSetItemForm from "./components/WBSetItemForm/WBSetItemForm";
 import WBSetItemWrapper from "./components/WBSetItemWrapper/WBSetItemWrapper";
 
 type ExerciseSetProps = {
@@ -39,7 +39,7 @@ export default function WBSet({ set, index }: ExerciseSetProps) {
         {set.setItems?.length === 0 && !showAddExercise && <WBNoExercises />}
         <hr />
         {showAddExercise ? (
-          <WBNewSetItem set={set} close={() => setShowAddExercise(false)} />
+          <WBSetItemForm set={set} close={() => setShowAddExercise(false)} />
         ) : (
           <div className="d-flex justify-content-center mt-2">
             <Button onClick={addExercise}>Add new</Button>

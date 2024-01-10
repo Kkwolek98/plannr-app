@@ -8,12 +8,16 @@ import { useWorkoutContext } from "../../../../../../hooks/useWorkoutContext";
 import useSetItemInitiaFormlValue from "./hooks/useSetItemInitialFormValue";
 
 type NewSetItemProps = {
-  set: ExerciseSet;
+  set?: ExerciseSet;
   setItem?: SetItem;
   close: () => void;
 };
 
-export default function WBNewSetItem({ set, setItem, close }: NewSetItemProps) {
+export default function WBSetItemForm({
+  set,
+  setItem,
+  close,
+}: NewSetItemProps) {
   const exercises = useExercises();
   const { setExerciseSet } = useWorkoutContext();
   const { displayToast } = useToast();
@@ -30,24 +34,24 @@ export default function WBNewSetItem({ set, setItem, close }: NewSetItemProps) {
       repExact: values.repExact,
       repWeight: values.repWeight,
       repType: values.repType,
-      sort: set.setItems.length,
+      sort: set!.setItems.length,
       rest: values.rest,
     };
 
-    addItemToSet$(set.id, newItem)
+    addItemToSet$(set!.id, newItem)
       .then((res) => {
-        setExerciseSet(set.id, res);
+        setExerciseSet(set!.id, res);
         close();
         displayToast({
           title: "Exercise added",
-          message: `Exercise has been added to set ${set.name}`,
+          message: `Exercise has been added to set ${set!.name}`,
           type: "success",
         });
       })
       .catch(() => {
         displayToast({
           title: "Error",
-          message: `Error adding exercise to set ${set.name}`,
+          message: `Error adding exercise to set ${set!.name}`,
           type: "danger",
         });
       });
