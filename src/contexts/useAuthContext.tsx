@@ -1,4 +1,11 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import axios from "axios";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { User } from "../types/user";
 
 const AuthContext = createContext<
@@ -22,8 +29,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   const setToken = (token: string) => {
-    console.log(token);
-    localStorage.setItem("token", `Bearer ${token}`);
+    localStorage.setItem("token", `${token}`);
   };
 
   const getToken = () => {
@@ -35,6 +41,12 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const context = { user, setUser, setToken, getToken, clearToken };
+
+  useEffect(() => {
+    attachAxiosInterceptors(() => {
+      localStorage.removeItem("token");
+    });
+  }, []);
 
   return (
     <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
@@ -49,3 +61,17 @@ export const useAuthContext = () => {
   }
   return context;
 };
+
+function attachAxiosInterceptors(on401: () => void) {
+  axios.interceptors.request.use(
+    (config) => {
+      config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+      return config;
+    },
+    (error) => {
+      if (error.response.status === 401) {
+        on401();
+      }
+    }
+  );
+}
