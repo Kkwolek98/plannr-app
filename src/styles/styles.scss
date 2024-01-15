@@ -22,3 +22,11 @@
     color: var(--bs-danger);
   }
 }
+
+body {
+  height: 100vh;
+
+  #root {
+    height: 100%;
+  }
+}
