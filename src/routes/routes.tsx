@@ -1,4 +1,5 @@
 import { RouteObject } from "react-router-dom";
+import GuardedRoute from "../components/GuardedRoute/GuardedRoute";
 import Layout from "../components/Layout/Layout";
 import ExercisesPage from "../pages/ExercisesPage/ExercisesPage";
 import HomePage from "../pages/HomePage/HomePage";
@@ -12,7 +13,11 @@ const routes: RouteObject[] = [
   },
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <GuardedRoute>
+        <Layout />
+      </GuardedRoute>
+    ),
     children: [
       {
         path: "/",

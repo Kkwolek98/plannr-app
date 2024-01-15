@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router";
+import { login$ } from "../../../api/auth";
+import { useAuthContext } from "../../../contexts/useAuthContext";
+
 export default function useLoginForm() {
+	const { setToken, setUser } = useAuthContext();
+	const navigate = useNavigate();
+
 	const isEmail = (email: string) => {
 		const re = /\S+@\S+\.\S+/;
 		return re.test(email);
@@ -27,8 +34,12 @@ export default function useLoginForm() {
 	};
 
 	const logIn = ({ email, password }: { email: string; password: string }) => {
-		// patch context
-		// etc.
+		login$(email, password).then((res) => {
+			console.log(res);
+			setToken(res.token);
+			setUser(res.user);
+			navigate("/");
+		});
 	};
 
 	return {

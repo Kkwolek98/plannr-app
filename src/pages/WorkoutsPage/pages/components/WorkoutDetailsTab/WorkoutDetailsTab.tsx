@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { Button, Col, Form, Row, Stack } from "react-bootstrap";
 import { updateWorkout$ } from "../../../../../api/workouts";
-import { useToast } from "../../../../../hooks/useToast";
+import { useToast } from "../../../../../contexts/useToast";
 import { Workout } from "../../../../../types/workout";
 import { useWorkoutContext } from "../../hooks/useWorkoutContext";
 

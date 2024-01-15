@@ -2,7 +2,7 @@ import { Formik } from "formik";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { createWorkout$ } from "../../../../api/workouts";
-import { useToast } from "../../../../hooks/useToast";
+import { useToast } from "../../../../contexts/useToast";
 
 type NewWorkoutModalProps = {
   show: boolean;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Accordion, Button, Col, Row } from "react-bootstrap";
-import { SinglePopoverProvider } from "../../../../../hooks/useSinglePopoverContext";
+import { SinglePopoverProvider } from "../../../../../contexts/useSinglePopoverContext";
 import { useWorkoutContext } from "../../hooks/useWorkoutContext";
 import "./WorkoutExercisesTab.scss";
 import WBSet from "./components/WBSet/WBSet";

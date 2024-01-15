@@ -1,5 +1,5 @@
 import { Toast, ToastContainer } from "react-bootstrap";
-import { useToast } from "../../hooks/useToast";
+import { useToast } from "../../contexts/useToast";
 
 export default function Toasts() {
   const { toasts, removeToast } = useToast();

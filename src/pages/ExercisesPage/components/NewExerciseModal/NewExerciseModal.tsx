@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Badge, Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { postExercise$ } from "../../../../api/exercises";
 import YTVideo from "../../../../components/YTVideo/YTVideo";
-import { useToast } from "../../../../hooks/useToast";
+import { useToast } from "../../../../contexts/useToast";
 
 type NewExerciseModalProps = {
   show: boolean;
